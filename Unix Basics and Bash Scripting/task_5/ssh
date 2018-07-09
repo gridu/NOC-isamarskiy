@@ -1,0 +1,1 @@
+ssh -i "isamarskiy.pem" ubuntu@ec2-18-219-69-246.us-east-2.compute.amazonaws.com

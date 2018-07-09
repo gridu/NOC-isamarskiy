@@ -1,0 +1,4 @@
+cat: nonexistentfile: No such file or directory
+grep: /etc/nofiles: No such file or directory
+start: Rejected send message, 1 matched rules; type="method_call", sender=":1.942" (uid=1000 pid=9247 comm="start ssh ") interface="com.ubuntu.Upstart0_6.Job" member="Start" error name="(unset)" requested_reply="0" destination="com.ubuntu.Upstart" (uid=0 pid=1 comm="/sbin/init")
+initctl: Unknown job: cron

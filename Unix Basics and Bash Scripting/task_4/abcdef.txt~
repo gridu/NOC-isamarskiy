@@ -1,0 +1,50 @@
+a)--------------------------------------------------------------------------------------------
+cat nonexistentfile
+	stdin - nonexistentfile
+
+	stout - nothing 
+
+	stderr - cat: nonexistentfile: No such file or directory
+
+
+b)--------------------------------------------------------------------------------------------
+file /sbin/ifconfig
+	stdin - /sbin/ifconfig
+
+	stout - /sbin/ifconfig: ELF 64-bit LSB  executable, x86-64, version 1 (SYSV), dynamically linked (uses shared libs), for GNU/Linux 2.6.24, BuildD[sha1=032086737dffbf3bf523ec2057c7b3d057ea8ff7, stripped)
+
+	stderr - nothing 
+
+c)--------------------------------------------------------------------------------------------
+grep root /etc/passwd /etc/nofiles > grepresults
+	stdin - root /etc/passwd /etc/nofiles
+
+	stdout(grepresults) - /etc/passwd:root:x:0:0:root:/root:/bin/bash
+
+	stderr - grep: /etc/nofiles: No such file or directory
+
+d)-------------------------------------------------------------------------------------------- 
+/etc/init.d/sshd start 1> /var/tmp/output
+	stdin - /etc/init.d/sshd start 1
+
+	stdout(/var/tmp/output) - nothing 		
+
+	stderr - start: Rejected send message, 1 matched rules; type="method_call", sender=":1.13" (uid=1000 pid=1332 comm="start sshd ") interface="com.ubuntu.Upstart0_6.Job" member="Start" error name="(unset)" requested_reply="0" destination="com.ubuntu.Upstart"(uid=0 pid=1 comm="/sbin/init") 
+
+e)--------------------------------------------------------------------------------------------
+/etc/init.d/crond start > /var/tmp/output 2>&1
+	stdin - /etc/init.d/crond start
+
+	stdout(/var/tmp/output) - Rather than invoking init script throught /etc/init.d, use service(8) utility, e.g. service crond start
+				  
+				  Since the script you are attempting to invoke has been converted to an Upstart job, you may alsu use the start(8) utility, e.g start cron
+
+	stderr(/var/tmp/output) - nothing
+
+f)--------------------------------------------------------------------------------------------
+cat nonexistentfile 1>> /var/tmp/output 2>> /var/tmp/error
+file /sbin/ifconfig 1>> /var/tmp/output 2>> /var/tmp/error
+grep root /etc/passwd /etc/nofiles 1>> /var/tmp/output 2>> /var/tmp/error
+/etc/init.d/ssh start 1>> /var/tmp/output 2>> /var/tmp/error
+/etc/init.d/cron start >> /var/tmp/output 2>> /var/tmp/error
+	
