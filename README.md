@@ -1,1 +1,2 @@
 # NOC-isamarskiy
+Igor Samarskiy
