@@ -1,0 +1,6 @@
+---
+- name: Ensure MySql install
+  yum: name=mysql-server state=present
+
+- name: Start Mysql
+  service: name=mysqld state=started
