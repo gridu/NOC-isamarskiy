@@ -1,0 +1,26 @@
+node {
+    stage('get git') {
+            git 'https://github.com/gagareg/jenkins.git'
+        }
+    
+
+    dir('/var/lib/jenkins/workspace/Mvn/mvn/my-app') {
+       
+        
+        stage('clean and package') {
+            sh 'mvn clean package'
+        }
+        
+        stage('test') {
+            sh 'mvn test'
+        }
+        
+        stage('archive') {
+            archiveArtifacts 'target/*.jar'
+        }
+
+    }
+}
+
+
+
