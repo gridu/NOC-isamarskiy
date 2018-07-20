@@ -4,9 +4,8 @@ node {
         }
     
 
-    dir('/var/lib/jenkins/workspace/Mvn/mvn/my-app') {
+    dir('/var/lib/jenkins/workspace/Mvn_Pipeline/mvn/my-app') {
        
-        
         stage('clean and package') {
             sh 'mvn clean package'
         }
@@ -18,8 +17,12 @@ node {
         stage('archive') {
             archiveArtifacts 'target/*.jar'
         }
-
+        
     }
+}
+
+node('Slave_1_18.222.151.197') {
+    sh 'ls'    
 }
 
 
