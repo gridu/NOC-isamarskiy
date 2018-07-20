@@ -7,3 +7,5 @@ mvn archetype:generate -DgroupId=com.mycompany.app -DartifactId=my-app -Darchety
 Репозиторий для проекта 
 
 https://github.com/gagareg/jenkins
+
+Trigger builds remotely - http://18.222.151.197:8080/job/Mvn_Pipeline/build?token=123456
