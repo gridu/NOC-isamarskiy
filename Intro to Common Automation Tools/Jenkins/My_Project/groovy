@@ -1,11 +1,12 @@
 node {
-    stage('get git') {
+    
+    dir('/var/lib/jenkins/workspace/Mvn_Pipeline_second') {
+        stage('get git') {
             git 'https://github.com/gagareg/jenkins.git'
         }
+    }
     
-
-    dir('/var/lib/jenkins/workspace/Mvn_Pipeline/mvn/my-app') {
-       
+    dir('/var/lib/jenkins/workspace/Mvn_Pipeline_second/mvn/my-app') {
         stage('clean and package') {
             sh 'mvn clean package'
         }
@@ -20,10 +21,8 @@ node {
         
     }
 }
-
-node('Slave_1_18.222.151.197') {
-    sh 'ls'    
+node('Slave') {
+    stage('Slave'){
+        sh 'ls'    
+    }
 }
-
-
-
