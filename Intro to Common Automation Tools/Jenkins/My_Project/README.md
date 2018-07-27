@@ -12,3 +12,5 @@ https://github.com/gagareg/jenkins
 
 Trigger builds remotely 
 http://18.222.169.10:8080/job/Mvn_Pipeline_second/build?token=123456
+
+login: gagareg ;pass: 3206849
