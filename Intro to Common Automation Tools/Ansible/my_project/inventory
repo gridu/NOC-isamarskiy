@@ -1,0 +1,9 @@
+[nodes]
+Igor_Usr_Ansible_1 ansible_host=18.222.202.55
+Igor_Usr_Ansible_2 ansible_host=18.222.139.38
+#Igor_Usr_Ansible_3 ansible_host=18.217.103.116
+#Igor_Usr_Ansible_4 ansible_host=18.191.107.232
+[nodes:vars]
+ansible_ssh_private_key_file=/home/ubuntu/ansible/isamarskiy.pem
+ansible_python_interpreter=/usr/bin/python3
+

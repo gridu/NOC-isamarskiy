@@ -1,0 +1,51 @@
+---
+- hosts: Igor_Usr_Ansible_1
+  tasks:
+    - name: install openjdk
+      become: yes
+      apt:
+        name: openjdk-8-jre-headless
+        update_cache: yes
+    - name: create jenkins directory
+      file:
+        path: ~/jenkins
+        state: directory
+    - name: download jenkins.war
+      get_url:
+        url: http://mirrors.jenkins.io/war-stable/latest/jenkins.war
+        dest: ~/jenkins
+    - name: run jenkins.war
+      shell: nohup java -jar /home/ubuntu/jenkins/jenkins.war &
+
+- hosts: Igor_Usr_Ansible_2
+  tasks:
+    - name: install pip
+      become: yes
+      apt: 
+        name: python3-pip
+        update_cache: yes 
+    - name: install docker-pip using pip
+      become: yes
+      pip:
+        name: docker
+    - name: create docker direcotory
+      file:
+        path: ~/docker
+        state: directory
+    - name: get sh
+      get_url:
+        url: https://get.docker.com/
+        dest: ~/docker/docker.sh
+    - name: install docker
+      shell: sh ~/docker/docker.sh 
+    - name: launch a ansible docker image 
+      become: yes
+      docker_container:
+        name: jenkins
+        image: gagareg/jenkins_with_dsl_plugin:2_1
+        state: started
+        detach: yes
+        ports:
+         - "8080:8080"
+     
+# think about add sudo usermod -a -G docker $USER
